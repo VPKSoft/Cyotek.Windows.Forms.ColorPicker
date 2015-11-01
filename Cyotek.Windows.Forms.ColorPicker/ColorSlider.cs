@@ -1482,6 +1482,31 @@ namespace Cyotek.Windows.Forms
       return new Point((int)x + padding.Left, (int)y + padding.Top);
     }
 
+    /// <summary>
+    /// Raises the <see cref="E:System.Windows.Forms.Control.MouseWheel"/> event.
+    /// </summary>
+    /// <param name="e">A <see cref="T:System.Windows.Forms.MouseEventArgs"/> that contains the event data. </param>
+    protected override void OnMouseWheel(MouseEventArgs e)
+    {
+      float value;
+
+      base.OnMouseWheel(e);
+
+      value = this.Value + -((e.Delta / SystemInformation.MouseWheelScrollDelta) * SystemInformation.MouseWheelScrollLines);
+
+      if (value < this.Minimum)
+      {
+        value = this.Minimum;
+      }
+
+      if (value > this.Maximum)
+      {
+        value = this.Maximum;
+      }
+
+      this.Value = value;
+    }
+
     #endregion
   }
 }

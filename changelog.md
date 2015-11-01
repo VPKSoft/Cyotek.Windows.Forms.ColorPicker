@@ -3,8 +3,14 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/lk901pafq02l9rgl)](https://ci.appveyor.com/project/cyotek/cyotek-windows-forms-colorpicker)
 
 ## 2.0.0 Unrelease
+### Added
+* `ColorSlider` controls now support the mouse wheel
+
 ### Removed
 * Removed IPaletteSerializer interface, and every class or piece of code that previously interacted with it
+
+### Fixed
+* Setting the `Colors` or `CustomColors` property of a `ColorGrid` control didn't release event handlers
 
 ## 1.0.6.0
 ### Added
