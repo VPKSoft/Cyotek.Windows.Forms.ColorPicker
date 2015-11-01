@@ -138,6 +138,12 @@
     <Content Include="Resources\palette-load.png" />
     <Content Include="Resources\palette-save.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Cyotek.Drawing.Color\src\Cyotek.Drawing.Color\Cyotek.Drawing.Color.csproj">
+      <Project>{B54DD41C-6FB1-47EE-BD09-3E7365EDF4E8}</Project>
+      <Name>Cyotek.Drawing.Color</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

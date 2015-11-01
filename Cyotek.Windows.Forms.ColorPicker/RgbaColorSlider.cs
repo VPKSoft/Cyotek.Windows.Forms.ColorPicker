@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
+using Cyotek.Drawing;
 
 namespace Cyotek.Windows.Forms
 {
@@ -185,7 +186,46 @@ namespace Cyotek.Windows.Forms
 
     protected virtual void CreateScale()
     {
-      this.CustomColors = new ColorCollection(Enumerable.Range(0, 254).Select(i => Color.FromArgb(this.Channel == RgbaChannel.Alpha ? i : this.Color.A, this.Channel == RgbaChannel.Red ? i : this.Color.R, this.Channel == RgbaChannel.Green ? i : this.Color.G, this.Channel == RgbaChannel.Blue ? i : this.Color.B)));
+      ColorEntryCollection custom;
+      Color color;
+      RgbaChannel channel;
+
+      custom = new ColorEntryCollection();
+      color = this.Color;
+      channel = this.Channel;
+
+      for (int i = 0; i < 254; i++)
+      {
+        int a;
+        int r;
+        int g;
+        int b;
+
+        a = color.A;
+        r = color.R;
+        g = color.G;
+        b = color.B;
+
+        switch (channel)
+        {
+          case RgbaChannel.Red:
+            r = i;
+            break;
+          case RgbaChannel.Green:
+            g = i;
+            break;
+          case RgbaChannel.Blue:
+            b = i;
+            break;
+          case RgbaChannel.Alpha:
+            a = i;
+            break;
+        }
+
+        custom.Add(new RgbaColorEntry(a, r, g, b));
+      }
+
+      this.CustomColors = custom;
     }
 
     protected virtual Brush CreateTransparencyBrush()

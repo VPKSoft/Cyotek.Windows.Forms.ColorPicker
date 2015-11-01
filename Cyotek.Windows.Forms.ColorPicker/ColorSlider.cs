@@ -5,6 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Windows.Forms;
+using Cyotek.Drawing;
 
 namespace Cyotek.Windows.Forms
 {
@@ -38,7 +39,7 @@ namespace Cyotek.Windows.Forms
 
     private Color _color3;
 
-    private ColorCollection _customColors;
+    private ColorEntryCollection _customColors;
 
     private int _largeChange;
 
@@ -336,7 +337,7 @@ namespace Cyotek.Windows.Forms
 
       // ReSharper disable CompareOfFloatsByEqualityOperator
       if (value != this.Value)
-        // ReSharper restore CompareOfFloatsByEqualityOperator
+      // ReSharper restore CompareOfFloatsByEqualityOperator
       {
         this.Value = value;
 
@@ -558,7 +559,7 @@ namespace Cyotek.Windows.Forms
     /// <remarks>This property is ignored if the <see cref="BarStyle"/> property is not set to Custom</remarks>
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-    public virtual ColorCollection CustomColors
+    public virtual ColorEntryCollection CustomColors
     {
       get { return _customColors; }
       set
@@ -605,7 +606,7 @@ namespace Cyotek.Windows.Forms
       {
         // ReSharper disable CompareOfFloatsByEqualityOperator
         if (this.Maximum != value)
-          // ReSharper restore CompareOfFloatsByEqualityOperator
+        // ReSharper restore CompareOfFloatsByEqualityOperator
         {
           _maximum = value;
 
@@ -627,7 +628,7 @@ namespace Cyotek.Windows.Forms
       {
         // ReSharper disable CompareOfFloatsByEqualityOperator
         if (this.Minimum != value)
-          // ReSharper restore CompareOfFloatsByEqualityOperator
+        // ReSharper restore CompareOfFloatsByEqualityOperator
         {
           _minimum = value;
 
@@ -778,7 +779,7 @@ namespace Cyotek.Windows.Forms
 
         // ReSharper disable CompareOfFloatsByEqualityOperator
         if (this.Value != value)
-          // ReSharper restore CompareOfFloatsByEqualityOperator
+        // ReSharper restore CompareOfFloatsByEqualityOperator
         {
           _value = value;
 
@@ -1388,10 +1389,16 @@ namespace Cyotek.Windows.Forms
                                 };
               break;
             case ColorBarStyle.Custom:
-              if (this.CustomColors != null && this.CustomColors.Count > 0)
+              ColorEntryCollection custom;
+              int count;
+
+              custom = this.CustomColors;
+              count = custom?.Count ?? 0;
+
+              if (custom != null && count > 0)
               {
-                blend.Colors = this.CustomColors.ToArray();
-                blend.Positions = Enumerable.Range(0, this.CustomColors.Count).Select(i => i == 0 ? 0 : i == this.CustomColors.Count - 1 ? 1 : (float)(1.0D / this.CustomColors.Count) * i).ToArray();
+                blend.Colors = custom.ToColorArray();
+                blend.Positions = Enumerable.Range(0, count).Select(i => i == 0 ? 0 : i == count - 1 ? 1 : (float)(1.0D / count) * i).ToArray();
               }
               else
               {

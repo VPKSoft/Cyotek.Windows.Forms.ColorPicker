@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
+using Cyotek.Drawing;
 
 namespace Cyotek.Windows.Forms
 {
@@ -20,7 +21,7 @@ namespace Cyotek.Windows.Forms
     {
       this.BarStyle = ColorBarStyle.Custom;
       this.Maximum = 359;
-      this.CustomColors = new ColorCollection(Enumerable.Range(0, 359).Select(h => new HslColor(h, 1, 0.5).ToRgbColor()));
+      this.CustomColors = new ColorEntryCollection(Enumerable.Range(0, 359).Select(h => new HslColor(h, 1, 0.5).ToRgbColor()));
     }
 
     #endregion
