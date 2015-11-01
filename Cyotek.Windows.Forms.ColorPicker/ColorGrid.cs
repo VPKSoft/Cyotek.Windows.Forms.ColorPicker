@@ -288,6 +288,9 @@ namespace Cyotek.Windows.Forms
     {
       if (disposing)
       {
+        this.RemoveEventHandlers(_colors);
+        this.RemoveEventHandlers(_customColors);
+
         if (_toolTip != null)
         {
           _toolTip.Dispose();
@@ -722,6 +725,8 @@ namespace Cyotek.Windows.Forms
 
         if (this.Colors != value)
         {
+          this.RemoveEventHandlers(_colors);
+
           _colors = value;
 
           this.OnColorsChanged(EventArgs.Empty);
@@ -766,6 +771,8 @@ namespace Cyotek.Windows.Forms
       {
         if (this.CustomColors != value)
         {
+          this.RemoveEventHandlers(_customColors);
+
           _customColors = value;
 
           this.OnCustomColorsChanged(EventArgs.Empty);
@@ -1487,6 +1494,27 @@ namespace Cyotek.Windows.Forms
       }
     }
 
+    private void RemoveEventHandlers(ColorCollection value)
+    {
+      if (value != null)
+      {
+        value.ItemInserted -= this.ColorsCollectionChangedHandler;
+        value.ItemRemoved -= this.ColorsCollectionChangedHandler;
+        value.ItemsCleared -= this.ColorsCollectionChangedHandler;
+        value.ItemReplaced -= this.ColorsCollectionItemReplacedHandler;
+      }
+    }
+    private void AddEventHandlers(ColorCollection value)
+    {
+      if (value != null)
+      {
+        value.ItemInserted += this.ColorsCollectionChangedHandler;
+        value.ItemRemoved += this.ColorsCollectionChangedHandler;
+        value.ItemsCleared += this.ColorsCollectionChangedHandler;
+        value.ItemReplaced += this.ColorsCollectionItemReplacedHandler;
+      }
+    }
+
     /// <summary>
     /// Raises the <see cref="ColorsChanged" /> event.
     /// </summary>
@@ -1495,13 +1523,7 @@ namespace Cyotek.Windows.Forms
     {
       EventHandler handler;
 
-      if (this.Colors != null)
-      {
-        this.Colors.ItemInserted += this.ColorsCollectionChangedHandler;
-        this.Colors.ItemRemoved += this.ColorsCollectionChangedHandler;
-        this.Colors.ItemsCleared += this.ColorsCollectionChangedHandler;
-        this.Colors.ItemReplaced += this.ColorsCollectionItemReplacedHandler;
-      }
+      this.AddEventHandlers(this.Colors);
 
       this.RefreshColors();
 
@@ -1560,10 +1582,7 @@ namespace Cyotek.Windows.Forms
     {
       EventHandler handler;
 
-      if (this.CustomColors != null)
-      {
-        this.CustomColors.CollectionChanged += this.ColorsCollectionChangedHandler;
-      }
+      this.AddEventHandlers(this.CustomColors);
       this.RefreshColors();
 
       handler = this.CustomColorsChanged;
