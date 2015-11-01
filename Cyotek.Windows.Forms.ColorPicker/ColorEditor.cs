@@ -5,10 +5,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
-#if USEEXTERNALCYOTEKLIBS
-using Cyotek.Drawing;
-
-#endif
 
 namespace Cyotek.Windows.Forms
 {

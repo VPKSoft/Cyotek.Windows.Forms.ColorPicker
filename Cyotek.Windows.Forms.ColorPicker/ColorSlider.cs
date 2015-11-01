@@ -5,13 +5,6 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Windows.Forms;
-#if USEEXTERNALCYOTEKLIBS
-using Cyotek.Win32;
-
-#else
-using NativeConstants = Cyotek.Windows.Forms.NativeMethods;
-
-#endif
 
 namespace Cyotek.Windows.Forms
 {
@@ -1306,7 +1299,7 @@ namespace Cyotek.Windows.Forms
 
         // draw a XOR'd line using Win32 API as this functionality isn't part of .NET
         hdc = e.Graphics.GetHdc();
-        NativeMethods.SetROP2(hdc, NativeConstants.R2_NOT);
+        NativeMethods.SetROP2(hdc, NativeMethods.R2_NOT);
         NativeMethods.MoveToEx(hdc, start.X, start.Y, IntPtr.Zero);
         NativeMethods.LineTo(hdc, end.X, end.Y);
         e.Graphics.ReleaseHdc(hdc);

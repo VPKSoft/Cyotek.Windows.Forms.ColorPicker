@@ -2,6 +2,10 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/lk901pafq02l9rgl)](https://ci.appveyor.com/project/cyotek/cyotek-windows-forms-colorpicker)
 
+## 2.0.0 Unrelease
+### Removed
+* Removed IPaletteSerializer interface, and every class or piece of code that previously interacted with it
+
 ## 1.0.6.0
 ### Added
 * Added `Minimum` and `Maximum` properties to `IPaletteSerializer` to provide hints to hosting applications about valid palettes

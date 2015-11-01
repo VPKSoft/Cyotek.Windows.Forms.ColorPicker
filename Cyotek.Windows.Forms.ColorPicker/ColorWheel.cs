@@ -5,10 +5,6 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
-#if USEEXTERNALCYOTEKLIBS
-using Cyotek.Drawing;
-
-#endif
 
 namespace Cyotek.Windows.Forms
 {

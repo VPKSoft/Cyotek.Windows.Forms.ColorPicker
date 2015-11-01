@@ -1,10 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
-#if USEEXTERNALCYOTEKLIBS
-using Cyotek.Drawing;
-
-#endif
 
 namespace Cyotek.Windows.Forms
 {
