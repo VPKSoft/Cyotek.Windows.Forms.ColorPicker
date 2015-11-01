@@ -1340,7 +1340,7 @@ namespace Cyotek.Windows.Forms
 
     protected virtual ColorCollection GetPredefinedPalette()
     {
-      return ColorPalettes.GetPalette(this.Palette);
+      return new ColorCollection(ColorPalettes.GetPalette(this.Palette).Select(ce => ce.ToColor()));
     }
 
     protected int GetRows(int count)
