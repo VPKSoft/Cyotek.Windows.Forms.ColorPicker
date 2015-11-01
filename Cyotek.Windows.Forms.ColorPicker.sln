@@ -15,14 +15,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution 
 		readme.md = readme.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cyotek.Windows.Forms.ColorPicker.Tests", "Cyotek.Windows.Forms.ColorPicker.Tests\Cyotek.Windows.Forms.ColorPicker.Tests.csproj", "{AB4C1D00-F604-4516-913E-F21F795B9DA0}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E449D964-8C83-4090-AA55-30DA13E7ACB8}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cyotek.Drawing.Color", "..\Cyotek.Drawing.Color\src\Cyotek.Drawing.Color\Cyotek.Drawing.Color.csproj", "{B54DD41C-6FB1-47EE-BD09-3E7365EDF4E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cyotek.Drawing.Color.Tests", "..\Cyotek.Drawing.Color\tests\Cyotek.Drawing.Color.Tests\Cyotek.Drawing.Color.Tests.csproj", "{E61930EA-D702-47A4-A748-C4F806816E49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cyotek.Drawing.Color.Windows.Forms", "..\Cyotek.Drawing.Color\src\Cyotek.Drawing.Color.Windows.Forms\Cyotek.Drawing.Color.Windows.Forms.csproj", "{5F1CCABA-0DB2-430B-96CB-7514B83410CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +43,18 @@ Global
 		{FB2A5786-CD2E-42CE-BC5D-0FCE90034221}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB2A5786-CD2E-42CE-BC5D-0FCE90034221}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB2A5786-CD2E-42CE-BC5D-0FCE90034221}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AB4C1D00-F604-4516-913E-F21F795B9DA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB4C1D00-F604-4516-913E-F21F795B9DA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AB4C1D00-F604-4516-913E-F21F795B9DA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB4C1D00-F604-4516-913E-F21F795B9DA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B54DD41C-6FB1-47EE-BD09-3E7365EDF4E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B54DD41C-6FB1-47EE-BD09-3E7365EDF4E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B54DD41C-6FB1-47EE-BD09-3E7365EDF4E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B54DD41C-6FB1-47EE-BD09-3E7365EDF4E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E61930EA-D702-47A4-A748-C4F806816E49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E61930EA-D702-47A4-A748-C4F806816E49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E61930EA-D702-47A4-A748-C4F806816E49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E61930EA-D702-47A4-A748-C4F806816E49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F1CCABA-0DB2-430B-96CB-7514B83410CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F1CCABA-0DB2-430B-96CB-7514B83410CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F1CCABA-0DB2-430B-96CB-7514B83410CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F1CCABA-0DB2-430B-96CB-7514B83410CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

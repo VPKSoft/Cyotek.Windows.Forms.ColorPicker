@@ -194,62 +194,64 @@ namespace Cyotek.Windows.Forms
 
     private void loadPaletteButton_Click(object sender, EventArgs e)
     {
-      using (FileDialog dialog = new OpenFileDialog
-                                 {
-                                   Filter = PaletteSerializer.DefaultOpenFilter,
-                                   DefaultExt = "pal",
-                                   Title = "Open Palette File"
-                                 })
-      {
-        if (dialog.ShowDialog(this) == DialogResult.OK)
-        {
-          try
-          {
-            IPaletteSerializer serializer;
+      throw new NotImplementedException();
 
-            serializer = PaletteSerializer.GetSerializer(dialog.FileName);
-            if (serializer != null)
-            {
-              ColorCollection palette;
+      //using (FileDialog dialog = new OpenFileDialog
+      //                           {
+      //                             Filter = PaletteSerializer.DefaultOpenFilter,
+      //                             DefaultExt = "pal",
+      //                             Title = "Open Palette File"
+      //                           })
+      //{
+      //  if (dialog.ShowDialog(this) == DialogResult.OK)
+      //  {
+      //    try
+      //    {
+      //      IPaletteSerializer serializer;
 
-              if (!serializer.CanRead)
-              {
-                throw new InvalidOperationException("Serializer does not support reading palettes.");
-              }
+      //      serializer = PaletteSerializer.GetSerializer(dialog.FileName);
+      //      if (serializer != null)
+      //      {
+      //        ColorCollection palette;
 
-              using (FileStream file = File.OpenRead(dialog.FileName))
-              {
-                palette = serializer.Deserialize(file);
-              }
+      //        if (!serializer.CanRead)
+      //        {
+      //          throw new InvalidOperationException("Serializer does not support reading palettes.");
+      //        }
 
-              if (palette != null)
-              {
-                // we can only display 96 colors in the color grid due to it's size, so if there's more, bin them
-                while (palette.Count > 96)
-                {
-                  palette.RemoveAt(palette.Count - 1);
-                }
+      //        using (FileStream file = File.OpenRead(dialog.FileName))
+      //        {
+      //          palette = serializer.Deserialize(file);
+      //        }
 
-                // or if we have less, fill in the blanks
-                while (palette.Count < 96)
-                {
-                  palette.Add(Color.White);
-                }
+      //        if (palette != null)
+      //        {
+      //          // we can only display 96 colors in the color grid due to it's size, so if there's more, bin them
+      //          while (palette.Count > 96)
+      //          {
+      //            palette.RemoveAt(palette.Count - 1);
+      //          }
 
-                colorGrid.Colors = palette;
-              }
-            }
-            else
-            {
-              MessageBox.Show("Sorry, unable to open palette, the file format is not supported or is not recognized.", "Load Palette", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-          }
-          catch (Exception ex)
-          {
-            MessageBox.Show(string.Format("Sorry, unable to open palette. {0}", ex.GetBaseException().Message), "Load Palette", MessageBoxButtons.OK, MessageBoxIcon.Error);
-          }
-        }
-      }
+      //          // or if we have less, fill in the blanks
+      //          while (palette.Count < 96)
+      //          {
+      //            palette.Add(Color.White);
+      //          }
+
+      //          colorGrid.Colors = palette;
+      //        }
+      //      }
+      //      else
+      //      {
+      //        MessageBox.Show("Sorry, unable to open palette, the file format is not supported or is not recognized.", "Load Palette", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+      //      }
+      //    }
+      //    catch (Exception ex)
+      //    {
+      //      MessageBox.Show(string.Format("Sorry, unable to open palette. {0}", ex.GetBaseException().Message), "Load Palette", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      //    }
+      //  }
+      //}
     }
 
     private void okButton_Click(object sender, EventArgs e)
@@ -260,43 +262,44 @@ namespace Cyotek.Windows.Forms
 
     private void savePaletteButton_Click(object sender, EventArgs e)
     {
-      using (FileDialog dialog = new SaveFileDialog
-                                 {
-                                   Filter = PaletteSerializer.DefaultSaveFilter,
-                                   DefaultExt = "pal",
-                                   Title = "Save Palette File As"
-                                 })
-      {
-        if (dialog.ShowDialog(this) == DialogResult.OK)
-        {
-          IPaletteSerializer serializer;
+      throw new NotImplementedException();
+      //using (FileDialog dialog = new SaveFileDialog
+      //                           {
+      //                             Filter = PaletteSerializer.DefaultSaveFilter,
+      //                             DefaultExt = "pal",
+      //                             Title = "Save Palette File As"
+      //                           })
+      //{
+      //  if (dialog.ShowDialog(this) == DialogResult.OK)
+      //  {
+      //    IPaletteSerializer serializer;
 
-          serializer = PaletteSerializer.AllSerializers.Where(s => s.CanWrite).ElementAt(dialog.FilterIndex - 1);
-          if (serializer != null)
-          {
-            if (!serializer.CanWrite)
-            {
-              throw new InvalidOperationException("Serializer does not support writing palettes.");
-            }
+      //    serializer = PaletteSerializer.AllSerializers.Where(s => s.CanWrite).ElementAt(dialog.FilterIndex - 1);
+      //    if (serializer != null)
+      //    {
+      //      if (!serializer.CanWrite)
+      //      {
+      //        throw new InvalidOperationException("Serializer does not support writing palettes.");
+      //      }
 
-            try
-            {
-              using (FileStream file = File.OpenWrite(dialog.FileName))
-              {
-                serializer.Serialize(file, colorGrid.Colors);
-              }
-            }
-            catch (Exception ex)
-            {
-              MessageBox.Show(string.Format("Sorry, unable to save palette. {0}", ex.GetBaseException().Message), "Save Palette", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-          }
-          else
-          {
-            MessageBox.Show("Sorry, unable to save palette, the file format is not supported or is not recognized.", "Save Palette", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-          }
-        }
-      }
+      //      try
+      //      {
+      //        using (FileStream file = File.OpenWrite(dialog.FileName))
+      //        {
+      //          serializer.Serialize(file, colorGrid.Colors);
+      //        }
+      //      }
+      //      catch (Exception ex)
+      //      {
+      //        MessageBox.Show(string.Format("Sorry, unable to save palette. {0}", ex.GetBaseException().Message), "Save Palette", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      //      }
+      //    }
+      //    else
+      //    {
+      //      MessageBox.Show("Sorry, unable to save palette, the file format is not supported or is not recognized.", "Save Palette", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+      //    }
+      //  }
+      //}
     }
 
     #endregion

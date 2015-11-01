@@ -110,39 +110,7 @@ namespace Cyotek.Windows.Forms
     #endregion
 
     #region Class Members
-
-    /// <summary>
-    /// Creates a new instance of the <see cref="ColorCollection" /> class that contains elements loaded from the specified file.
-    /// </summary>
-    /// <param name="fileName">Name of the file to load.</param>
-    /// <exception cref="System.ArgumentNullException">Thrown if the <c>fileName</c> argument is not specified.</exception>
-    /// <exception cref="System.IO.FileNotFoundException">Thrown if the file specified by <c>fileName</c> cannot be found.</exception>
-    /// <exception cref="System.ArgumentException">Thrown if no <see cref="IPaletteSerializer"/> is available for the file specified by <c>fileName</c>.</exception>
-    public static ColorCollection LoadPalette(string fileName)
-    {
-      IPaletteSerializer serializer;
-
-      if (string.IsNullOrEmpty(fileName))
-      {
-        throw new ArgumentNullException(nameof(fileName));
-      }
-
-      if (!File.Exists(fileName))
-      {
-        throw new FileNotFoundException(string.Format("Cannot find file '{0}'", fileName), fileName);
-      }
-
-      serializer = PaletteSerializer.GetSerializer(fileName);
-      if (serializer == null)
-      {
-        throw new ArgumentException(string.Format("Cannot find a palette serializer for '{0}'", fileName), nameof(fileName));
-      }
-
-      using (FileStream file = File.OpenRead(fileName))
-      {
-        return serializer.Deserialize(file);
-      }
-    }
+    
 
     #endregion
 
@@ -372,45 +340,7 @@ namespace Cyotek.Windows.Forms
       return result;
     }
 
-    /// <summary>
-    /// Populates this <see cref="ColorCollection"/> with items loaded from the specified file.
-    /// </summary>
-    /// <param name="fileName">Name of the file to load.</param>
-    /// <exception cref="System.ArgumentNullException">Thrown if the <c>fileName</c> argument is not specified.</exception>
-    /// <exception cref="System.IO.FileNotFoundException">Thrown if the file specified by <c>fileName</c> cannot be found.</exception>
-    /// <exception cref="System.ArgumentException">Thrown if no <see cref="IPaletteSerializer"/> is available for the file specified by <c>fileName</c>.</exception>
-    public void Load(string fileName)
-    {
-      ColorCollection palette;
-
-      palette = LoadPalette(fileName);
-
-      this.Clear();
-      this.AddRange(palette);
-    }
-
-    /// <summary>
-    /// Saves the contents of this <see cref="ColorCollection"/> into the specified file.
-    /// </summary>
-    /// <param name="fileName">Name of the file to save.</param>
-    /// <exception cref="System.ArgumentNullException">Thrown if the <c>fileName</c> argument is not specified.</exception>
-    /// <exception cref="System.ArgumentException">Thrown if no <see cref="IPaletteSerializer"/> is available for the file specified by <c>fileName</c>.</exception>
-    public void Save<T>(string fileName) where T : IPaletteSerializer, new()
-    {
-      IPaletteSerializer serializer;
-
-      if (string.IsNullOrEmpty(fileName))
-      {
-        throw new ArgumentNullException(nameof(fileName));
-      }
-
-      serializer = Activator.CreateInstance<T>();
-
-      using (FileStream file = File.OpenWrite(fileName))
-      {
-        serializer.Serialize(file, this);
-      }
-    }
+    
 
     /// <summary>
     /// Sorts the elements in the entire %ColorCollection% using the specified order.

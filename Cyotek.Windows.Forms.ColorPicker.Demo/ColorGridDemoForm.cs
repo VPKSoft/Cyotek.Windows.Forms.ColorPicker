@@ -119,7 +119,8 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
     {
       if (palettesListBox.SelectedIndex != -1)
       {
-        colorGrid.Colors = ColorCollection.LoadPalette(Path.Combine(PalettePath, palettesListBox.SelectedItem.ToString()));
+        //colorGrid.Colors = ColorCollection.LoadPalette(Path.Combine(PalettePath, palettesListBox.SelectedItem.ToString()));
+        throw new NotImplementedException();
       }
     }
 
@@ -130,24 +131,26 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
 
     private void savePaletteButton_Click(object sender, EventArgs e)
     {
-      using (FileDialog dialog = new SaveFileDialog
-                                 {
-                                   Filter = PaletteSerializer.DefaultSaveFilter,
-                                   Title = "Save Palette As"
-                                 })
-      {
-        if (dialog.ShowDialog(this) == DialogResult.OK)
-        {
-          IPaletteSerializer serializer;
+      throw new NotImplementedException();
 
-          serializer = PaletteSerializer.AllSerializers.Where(s => s.CanWrite).ElementAt(dialog.FilterIndex - 1);
+      //using (FileDialog dialog = new SaveFileDialog
+      //                           {
+      //                             Filter = PaletteSerializer.DefaultSaveFilter,
+      //                             Title = "Save Palette As"
+      //                           })
+      //{
+      //  if (dialog.ShowDialog(this) == DialogResult.OK)
+      //  {
+      //    IPaletteSerializer serializer;
 
-          using (Stream stream = File.Create(dialog.FileName))
-          {
-            serializer.Serialize(stream, colorGrid.Colors);
-          }
-        }
-      }
+      //    serializer = PaletteSerializer.AllSerializers.Where(s => s.CanWrite).ElementAt(dialog.FilterIndex - 1);
+
+      //    using (Stream stream = File.Create(dialog.FileName))
+      //    {
+      //      serializer.Serialize(stream, colorGrid.Colors);
+      //    }
+      //  }
+      //}
     }
 
     private void shadesOfBlueButton_Click(object sender, EventArgs e)

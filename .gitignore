@@ -3,8 +3,11 @@ packages/
 .vs/
 bin/
 obj/
+_NCrunch_Cyotek.Windows.Forms.ColorPicker/
+DTAR*/
 
 *.ncrunchsolution
 *.ncrunchproject
 *.user
 *.suo
+*.cache
