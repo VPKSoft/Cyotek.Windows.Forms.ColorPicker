@@ -5,6 +5,7 @@ using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Cyotek.Drawing;
 
 namespace Cyotek.Windows.Forms
 {
@@ -123,12 +124,12 @@ namespace Cyotek.Windows.Forms
       {
         for (int i = 0; i < colorGrid.Colors.Count; i++)
         {
-          Color color;
+          ColorEntry color;
 
           color = colorGrid.Colors[i];
-          if (color.A != 255)
+          if (color.GetRgb32(Drawing.RgbaChannel.Alpha) != 255)
           {
-            colorGrid.Colors[i] = Color.FromArgb(255, color);
+            colorGrid.Colors[i] = new ArgbColorEntry(255, color);
           }
         }
       }
@@ -180,14 +181,14 @@ namespace Cyotek.Windows.Forms
       e.Cancel = true;
 
       using (ColorDialog dialog = new ColorDialog
-                                  {
-                                    FullOpen = true,
-                                    Color = e.Color
-                                  })
+      {
+        FullOpen = true,
+        Color = e.Color
+      })
       {
         if (dialog.ShowDialog(this) == DialogResult.OK)
         {
-          colorGrid.Colors[e.ColorIndex] = dialog.Color;
+          colorGrid.Colors[e.ColorIndex] = new ArgbColorEntry(dialog.Color);
         }
       }
     }

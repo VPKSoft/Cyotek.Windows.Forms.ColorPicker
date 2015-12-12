@@ -2,7 +2,7 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/lk901pafq02l9rgl)](https://ci.appveyor.com/project/cyotek/cyotek-windows-forms-colorpicker)
 
-## 2.0.0 Unrelease
+## 2.0.0 Unreleased
 ### Added
 * `ColorSlider` controls now support the mouse wheel
 

@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Cyotek Color Picker Controls")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Cyotek Ltd")]
 [assembly: AssemblyProduct("Cyotek Color Picker Controls")]
 [assembly: AssemblyCopyright("Copyright © 2013-2015 Cyotek Ltd.")]
 [assembly: AssemblyTrademark("")]
@@ -21,5 +21,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: Guid("de546619-59b3-438e-8b5a-3d149e146b22")]
 [assembly: CLSCompliant(true)]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.6.0")]
+[assembly: AssemblyVersion("2.0.0.0")]
+[assembly: AssemblyFileVersion("2.0.0.0")]
+
+// ## UPDATED

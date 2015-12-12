@@ -113,7 +113,7 @@
       // 
       // gColorBar
       // 
-      this.gColorBar.Channel = Cyotek.Windows.Forms.RgbaChannel.Green;
+      this.gColorBar.Channel = Cyotek.Drawing.RgbaChannel.Green;
       this.gColorBar.Location = new System.Drawing.Point(27, 39);
       this.gColorBar.Name = "gColorBar";
       this.gColorBar.Size = new System.Drawing.Size(72, 20);
@@ -145,7 +145,7 @@
       // 
       // bColorBar
       // 
-      this.bColorBar.Channel = Cyotek.Windows.Forms.RgbaChannel.Blue;
+      this.bColorBar.Channel = Cyotek.Drawing.RgbaChannel.Blue;
       this.bColorBar.Location = new System.Drawing.Point(27, 65);
       this.bColorBar.Name = "bColorBar";
       this.bColorBar.Size = new System.Drawing.Size(72, 20);
@@ -296,7 +296,7 @@
       // 
       // aColorBar
       // 
-      this.aColorBar.Channel = Cyotek.Windows.Forms.RgbaChannel.Alpha;
+      this.aColorBar.Channel = Cyotek.Drawing.RgbaChannel.Alpha;
       this.aColorBar.Location = new System.Drawing.Point(27, 216);
       this.aColorBar.Name = "aColorBar";
       this.aColorBar.Size = new System.Drawing.Size(72, 20);

@@ -218,7 +218,7 @@
       this.alphaColorSlider.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.alphaColorSlider.Channel = Cyotek.Windows.Forms.RgbaChannel.Alpha;
+      this.alphaColorSlider.Channel = Cyotek.Drawing.RgbaChannel.Alpha;
       this.alphaColorSlider.Location = new System.Drawing.Point(6, 22);
       this.alphaColorSlider.Name = "alphaColorSlider";
       this.alphaColorSlider.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -243,7 +243,7 @@
       this.blueRgbColorSlider.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.blueRgbColorSlider.Channel = Cyotek.Windows.Forms.RgbaChannel.Blue;
+      this.blueRgbColorSlider.Channel = Cyotek.Drawing.RgbaChannel.Blue;
       this.blueRgbColorSlider.Location = new System.Drawing.Point(6, 22);
       this.blueRgbColorSlider.Name = "blueRgbColorSlider";
       this.blueRgbColorSlider.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -268,7 +268,7 @@
       this.greenRgbColorSlider.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.greenRgbColorSlider.Channel = Cyotek.Windows.Forms.RgbaChannel.Green;
+      this.greenRgbColorSlider.Channel = Cyotek.Drawing.RgbaChannel.Green;
       this.greenRgbColorSlider.Location = new System.Drawing.Point(6, 22);
       this.greenRgbColorSlider.Name = "greenRgbColorSlider";
       this.greenRgbColorSlider.Orientation = System.Windows.Forms.Orientation.Vertical;

@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Cyotek.Drawing;
 
 namespace Cyotek.Windows.Forms.ColorPicker.Demo
 {
@@ -59,7 +60,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
 
     private void addCustomColorsButton_Click(object sender, EventArgs e)
     {
-      colorGrid.CustomColors = new ColorCollection(ColorPalettes.QbColors.Select(ce => ce.ToColor()));
+      colorGrid.CustomColors = ColorPalettes.QbColors;
     }
 
     private void addNewColorButton_Click(object sender, EventArgs e)
@@ -93,26 +94,26 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
 
     private void grayScaleButton_Click(object sender, EventArgs e)
     {
-      colorGrid.Colors = new ColorCollection(Enumerable.Range(0, 254).Select(i => Color.FromArgb(i, i, i)));
+      colorGrid.Colors = new ColorEntryCollection(Enumerable.Range(0, 254).Select(i => ArgbColorEntry.FromArgb(i, i, i)));
     }
 
     private void hexagonPaletteButton_Click(object sender, EventArgs e)
     {
       // NOTE: Predefined palettes can now be set via the Palette property
-      colorGrid.Colors = new ColorCollection(ColorPalettes.HexagonPalette.Select(ce => ce.ToColor()));
+      colorGrid.Colors = ColorPalettes.HexagonPalette;
     }
 
     private void office2010Button_Click(object sender, EventArgs e)
     {
       // NOTE: Predefined palettes can now be set via the Palette property (this does not affect other properties such as Columns below though!)
-      colorGrid.Colors = new ColorCollection(ColorPalettes.Office2010Standard.Select(ce => ce.ToColor()));
+      colorGrid.Colors = ColorPalettes.Office2010Standard;
       colorGrid.Columns = 10;
     }
 
     private void paintNetPaletteButton_Click(object sender, EventArgs e)
     {
       // NOTE: Predefined palettes can now be set via the Palette property
-      colorGrid.Colors = new ColorCollection(ColorPalettes.PaintPalette.Select(ce => ce.ToColor()));
+      colorGrid.Colors = ColorPalettes.PaintPalette;
     }
 
     private void palettesListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -126,7 +127,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
 
     private void resetCustomColorsButton_Click(object sender, EventArgs e)
     {
-      colorGrid.CustomColors = new ColorCollection(Enumerable.Repeat(Color.White, 32));
+      colorGrid.CustomColors = new ColorEntryCollection(Enumerable.Repeat(Color.White, 32));
     }
 
     private void savePaletteButton_Click(object sender, EventArgs e)
@@ -155,23 +156,23 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
 
     private void shadesOfBlueButton_Click(object sender, EventArgs e)
     {
-      colorGrid.Colors = new ColorCollection(Enumerable.Range(0, 254).Select(i => Color.FromArgb(0, 0, i)));
+      colorGrid.Colors = new ColorEntryCollection(Enumerable.Range(0, 254).Select(i => Color.FromArgb(0, 0, i)));
     }
 
     private void shadesOfGreenButton_Click(object sender, EventArgs e)
     {
-      colorGrid.Colors = new ColorCollection(Enumerable.Range(0, 254).Select(i => Color.FromArgb(0, i, 0)));
+      colorGrid.Colors = new ColorEntryCollection(Enumerable.Range(0, 254).Select(i => Color.FromArgb(0, i, 0)));
     }
 
     private void shadesOfRedButton_Click(object sender, EventArgs e)
     {
-      colorGrid.Colors = new ColorCollection(Enumerable.Range(0, 254).Select(i => Color.FromArgb(i, 0, 0)));
+      colorGrid.Colors = new ColorEntryCollection(Enumerable.Range(0, 254).Select(i => Color.FromArgb(i, 0, 0)));
     }
 
     private void standardColorsButton_Click(object sender, EventArgs e)
     {
       // NOTE: Predefined palettes can now be set via the Palette property
-      colorGrid.Colors = new ColorCollection(ColorPalettes.NamedColors.Select(ce => ce.ToColor()));
+      colorGrid.Colors = ColorPalettes.NamedColors;
     }
 
     #endregion

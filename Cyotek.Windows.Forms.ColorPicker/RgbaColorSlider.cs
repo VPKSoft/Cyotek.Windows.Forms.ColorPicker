@@ -222,7 +222,7 @@ namespace Cyotek.Windows.Forms
             break;
         }
 
-        custom.Add(new RgbaColorEntry(a, r, g, b));
+        custom.Add(new ArgbColorEntry(a, r, g, b));
       }
 
       this.CustomColors = custom;

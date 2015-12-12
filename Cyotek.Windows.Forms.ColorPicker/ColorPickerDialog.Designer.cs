@@ -73,6 +73,7 @@ namespace Cyotek.Windows.Forms
       this.loadPaletteButton.TabIndex = 5;
       this.toolTip.SetToolTip(this.loadPaletteButton, "Load Palette");
       this.loadPaletteButton.UseVisualStyleBackColor = false;
+      this.loadPaletteButton.Visible = false;
       this.loadPaletteButton.Click += new System.EventHandler(this.loadPaletteButton_Click);
       // 
       // savePaletteButton
@@ -85,6 +86,7 @@ namespace Cyotek.Windows.Forms
       this.savePaletteButton.TabIndex = 6;
       this.toolTip.SetToolTip(this.savePaletteButton, "Save Palette");
       this.savePaletteButton.UseVisualStyleBackColor = false;
+      this.savePaletteButton.Visible = false;
       this.savePaletteButton.Click += new System.EventHandler(this.savePaletteButton_Click);
       // 
       // screenColorPicker
@@ -121,6 +123,7 @@ namespace Cyotek.Windows.Forms
       // 
       this.colorGrid.AutoAddColors = false;
       this.colorGrid.CellBorderStyle = Cyotek.Windows.Forms.ColorCellBorderStyle.None;
+      this.colorGrid.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
       this.colorGrid.EditMode = Cyotek.Windows.Forms.ColorEditingMode.Both;
       this.colorGrid.Location = new System.Drawing.Point(12, 176);
       this.colorGrid.Name = "colorGrid";
