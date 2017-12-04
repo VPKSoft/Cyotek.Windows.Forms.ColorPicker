@@ -37,6 +37,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
       this.dialogColorPreviewPanel = new Cyotek.Windows.Forms.ColorPicker.Demo.ColorPreviewBox();
       this.colorPreviewPanel = new Cyotek.Windows.Forms.ColorPicker.Demo.ColorPreviewBox();
       this.showAlphaChannelCheckBox = new System.Windows.Forms.CheckBox();
+      this.standardColorDialogButton = new System.Windows.Forms.Button();
       this.menuStrip.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -117,11 +118,22 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
       this.showAlphaChannelCheckBox.Text = "Show &Alpha Channel";
       this.showAlphaChannelCheckBox.UseVisualStyleBackColor = true;
       // 
+      // standardColorDialogButton
+      // 
+      this.standardColorDialogButton.Location = new System.Drawing.Point(264, 153);
+      this.standardColorDialogButton.Name = "standardColorDialogButton";
+      this.standardColorDialogButton.Size = new System.Drawing.Size(103, 23);
+      this.standardColorDialogButton.TabIndex = 7;
+      this.standardColorDialogButton.Text = "&Choose Color...";
+      this.standardColorDialogButton.UseVisualStyleBackColor = true;
+      this.standardColorDialogButton.Click += new System.EventHandler(this.standardColorDialogButton_Click);
+      // 
       // ColorPickerDialogDemoForm
       // 
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(554, 297);
+      this.Controls.Add(this.standardColorDialogButton);
       this.Controls.Add(this.showAlphaChannelCheckBox);
       this.Controls.Add(this.colorPreviewPanel);
       this.Controls.Add(this.dialogColorPreviewPanel);
@@ -149,5 +161,6 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
     private ColorPreviewBox dialogColorPreviewPanel;
     private ColorPreviewBox colorPreviewPanel;
     private System.Windows.Forms.CheckBox showAlphaChannelCheckBox;
+    private System.Windows.Forms.Button standardColorDialogButton;
   }
 }

@@ -32,9 +32,6 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
       this.propertyGrid = new System.Windows.Forms.PropertyGrid();
       this.colorGrid = new Cyotek.Windows.Forms.ColorGrid();
       this.optionsSplitContainer = new System.Windows.Forms.SplitContainer();
-      this.groupBox4 = new Cyotek.Windows.Forms.GroupBox();
-      this.palettesListBox = new System.Windows.Forms.ListBox();
-      this.savePaletteButton = new System.Windows.Forms.Button();
       this.groupBox3 = new Cyotek.Windows.Forms.GroupBox();
       this.addCustomColorsButton = new System.Windows.Forms.Button();
       this.resetCustomColorsButton = new System.Windows.Forms.Button();
@@ -60,7 +57,6 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
       this.optionsSplitContainer.Panel1.SuspendLayout();
       this.optionsSplitContainer.Panel2.SuspendLayout();
       this.optionsSplitContainer.SuspendLayout();
-      this.groupBox4.SuspendLayout();
       this.groupBox3.SuspendLayout();
       this.groupBox2.SuspendLayout();
       this.groupBox1.SuspendLayout();
@@ -89,6 +85,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
       // propertyGrid
       // 
       this.propertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.propertyGrid.LineColor = System.Drawing.SystemColors.ControlDark;
       this.propertyGrid.Location = new System.Drawing.Point(0, 0);
       this.propertyGrid.Name = "propertyGrid";
       this.propertyGrid.SelectedObject = this.colorGrid;
@@ -100,7 +97,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
       this.colorGrid.Location = new System.Drawing.Point(3, 3);
       this.colorGrid.Name = "colorGrid";
       this.colorGrid.Padding = new System.Windows.Forms.Padding(6);
-      this.colorGrid.Size = new System.Drawing.Size(249, 182);
+      this.colorGrid.Size = new System.Drawing.Size(249, 167);
       this.colorGrid.TabIndex = 0;
       this.colorGrid.ColorChanged += new System.EventHandler(this.colorGrid_ColorChanged);
       // 
@@ -117,54 +114,14 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
       // 
       // optionsSplitContainer.Panel2
       // 
-      this.optionsSplitContainer.Panel2.Controls.Add(this.groupBox4);
       this.optionsSplitContainer.Panel2.Controls.Add(this.groupBox3);
       this.optionsSplitContainer.Panel2.Controls.Add(this.groupBox2);
       this.optionsSplitContainer.Panel2.Controls.Add(this.groupBox1);
       this.optionsSplitContainer.Panel2.Controls.Add(this.addNewColorButton);
       this.optionsSplitContainer.Size = new System.Drawing.Size(667, 428);
-      this.optionsSplitContainer.SplitterDistance = 288;
+      this.optionsSplitContainer.SplitterDistance = 287;
       this.optionsSplitContainer.SplitterWidth = 5;
       this.optionsSplitContainer.TabIndex = 0;
-      // 
-      // groupBox4
-      // 
-      this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.groupBox4.Controls.Add(this.palettesListBox);
-      this.groupBox4.Controls.Add(this.savePaletteButton);
-      this.groupBox4.Location = new System.Drawing.Point(3, 315);
-      this.groupBox4.Name = "groupBox4";
-      this.groupBox4.Size = new System.Drawing.Size(368, 110);
-      this.groupBox4.TabIndex = 4;
-      this.groupBox4.TabStop = false;
-      this.groupBox4.Text = "External Palette Files";
-      // 
-      // palettesListBox
-      // 
-      this.palettesListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.palettesListBox.FormattingEnabled = true;
-      this.palettesListBox.IntegralHeight = false;
-      this.palettesListBox.ItemHeight = 15;
-      this.palettesListBox.Location = new System.Drawing.Point(6, 22);
-      this.palettesListBox.Name = "palettesListBox";
-      this.palettesListBox.Size = new System.Drawing.Size(272, 82);
-      this.palettesListBox.TabIndex = 0;
-      this.palettesListBox.SelectedIndexChanged += new System.EventHandler(this.palettesListBox_SelectedIndexChanged);
-      // 
-      // savePaletteButton
-      // 
-      this.savePaletteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-      this.savePaletteButton.Location = new System.Drawing.Point(284, 81);
-      this.savePaletteButton.Name = "savePaletteButton";
-      this.savePaletteButton.Size = new System.Drawing.Size(75, 23);
-      this.savePaletteButton.TabIndex = 1;
-      this.savePaletteButton.Text = "Save As";
-      this.savePaletteButton.UseVisualStyleBackColor = true;
-      this.savePaletteButton.Click += new System.EventHandler(this.savePaletteButton_Click);
       // 
       // groupBox3
       // 
@@ -174,7 +131,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
       this.groupBox3.Controls.Add(this.resetCustomColorsButton);
       this.groupBox3.Location = new System.Drawing.Point(3, 49);
       this.groupBox3.Name = "groupBox3";
-      this.groupBox3.Size = new System.Drawing.Size(368, 60);
+      this.groupBox3.Size = new System.Drawing.Size(369, 60);
       this.groupBox3.TabIndex = 1;
       this.groupBox3.TabStop = false;
       this.groupBox3.Text = "Custom Colors";
@@ -209,7 +166,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
       this.groupBox2.Controls.Add(this.grayScaleButton);
       this.groupBox2.Location = new System.Drawing.Point(3, 215);
       this.groupBox2.Name = "groupBox2";
-      this.groupBox2.Size = new System.Drawing.Size(368, 94);
+      this.groupBox2.Size = new System.Drawing.Size(369, 94);
       this.groupBox2.TabIndex = 3;
       this.groupBox2.TabStop = false;
       this.groupBox2.Text = "Dynamically Generated Color Palettes";
@@ -264,7 +221,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
       this.groupBox1.Controls.Add(this.office2010Button);
       this.groupBox1.Location = new System.Drawing.Point(3, 115);
       this.groupBox1.Name = "groupBox1";
-      this.groupBox1.Size = new System.Drawing.Size(368, 94);
+      this.groupBox1.Size = new System.Drawing.Size(369, 94);
       this.groupBox1.TabIndex = 2;
       this.groupBox1.TabStop = false;
       this.groupBox1.Text = "Pre-defined Color Palettes";
@@ -362,8 +319,8 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
       // 
       // ColorGridDemoForm
       // 
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1006, 474);
       this.Controls.Add(this.propertiesSplitContainer);
       this.Controls.Add(this.menuStrip);
@@ -377,7 +334,6 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
       this.optionsSplitContainer.Panel1.PerformLayout();
       this.optionsSplitContainer.Panel2.ResumeLayout(false);
       this.optionsSplitContainer.ResumeLayout(false);
-      this.groupBox4.ResumeLayout(false);
       this.groupBox3.ResumeLayout(false);
       this.groupBox2.ResumeLayout(false);
       this.groupBox1.ResumeLayout(false);
@@ -415,8 +371,5 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
     private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
     private System.Windows.Forms.Button paintNetPaletteButton;
-    private GroupBox groupBox4;
-    private System.Windows.Forms.Button savePaletteButton;
-    private System.Windows.Forms.ListBox palettesListBox;
   }
 }

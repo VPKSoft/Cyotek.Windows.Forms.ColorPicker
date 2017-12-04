@@ -132,12 +132,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ScratchForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ScratchForm.Designer.cs">
-      <DependentUpon>ScratchForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="ScreenColorPickerDemoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,9 +178,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="ScratchForm.resx">
-      <DependentUpon>ScratchForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ScreenColorPickerDemoForm.resx">
       <DependentUpon>ScreenColorPickerDemoForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -205,45 +196,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
-    <Content Include="palettes\PaintNet.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="app.manifest" />
-    <None Include="palettes\16pal_v20.act">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Resources\text.png" />
     <None Include="Resources\fill.png" />
     <Content Include="Resources\markdownpad-github.css" />
     <None Include="packages.config" />
-    <None Include="palettes\arne-v20-16.aco">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="palettes\arnev-20-16.pal">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="palettes\atari-800xl-palette.pal">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="palettes\background.lbm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="palettes\background.pal">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="palettes\db16.gpl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="palettes\db32.gpl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="palettes\grayscale.pal">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Resources\eyedropper.png" />
-    <None Include="palettes\Hex256.pal">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Resources\cellbackground.png" />
     <None Include="Resources\icon.png" />
   </ItemGroup>

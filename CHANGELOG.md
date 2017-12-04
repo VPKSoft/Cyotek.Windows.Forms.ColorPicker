@@ -1,8 +1,18 @@
 # Change Log
 
-## 1.8.0
+## 2.0.0
+### Added
+* Added `ShowLoadPalette` and `ShowSavePalette` properties to control if the load/save palette buttons are visible
+* Added `LoadPalette` and `SavePalette` events to `ColorPickerDialog`
+
 ### Changed
 * The `ColorGrid` control now will now automatically scale color cells if the application is displayed with high DPI
+
+### Removed
+* Support for loading custom palettes via the `IPaletteSerializer` interface have been removed as they weren't really a core par of what this library was designed for
+* Removed `IPaletteSerializer` interface
+* Removed `RawPaletteSerializer`, `PaletteSerializer`, `PaintNetSerializer`, `JascPaletteSerializer`, `InterleavedBitmapPaletteSerializer`, `AdobeColorTablePaletteSerializer`, `AdobePhotoshopColorSwatchColorSpace`, `AdobePhotoshopColorSwatchFileVersion`, `GimpPaletteSerializer` and `AdobePhotoshopColorSwatchSerializer` classes
+* `ColorCollection.Save`, `Load` and `LoadPalette` methods removed
 
 ## 1.7.2
 ### Added

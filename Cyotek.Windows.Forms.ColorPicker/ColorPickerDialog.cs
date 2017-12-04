@@ -2,8 +2,6 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Cyotek.Windows.Forms
@@ -22,11 +20,21 @@ namespace Cyotek.Windows.Forms
   {
     #region Constants
 
+    private static readonly object _eventLoadPalette = new object();
+
     private static readonly object _eventPreviewColorChanged = new object();
+
+    private static readonly object _eventSavePalette = new object();
 
     #endregion
 
     #region Fields
+
+    private bool _showAlphaChannel;
+
+    private bool _showLoadPalette;
+
+    private bool _showSavePalette;
 
     private Brush _textureBrush;
 
@@ -37,19 +45,33 @@ namespace Cyotek.Windows.Forms
     public ColorPickerDialog()
     {
       this.InitializeComponent();
-      this.ShowAlphaChannel = true;
-      this.Font = SystemFonts.DialogFont;
+      _showAlphaChannel = true;
+      base.Font = SystemFonts.DialogFont;
     }
 
     #endregion
 
     #region Events
 
+    [Category("Action")]
+    public event CancelEventHandler LoadPalette
+    {
+      add { this.Events.AddHandler(_eventLoadPalette, value); }
+      remove { this.Events.RemoveHandler(_eventLoadPalette, value); }
+    }
+
     [Category("Property Changed")]
     public event EventHandler PreviewColorChanged
     {
       add { this.Events.AddHandler(_eventPreviewColorChanged, value); }
       remove { this.Events.RemoveHandler(_eventPreviewColorChanged, value); }
+    }
+
+    [Category("Action")]
+    public event CancelEventHandler SavePalette
+    {
+      add { this.Events.AddHandler(_eventSavePalette, value); }
+      remove { this.Events.RemoveHandler(_eventSavePalette, value); }
     }
 
     #endregion
@@ -64,7 +86,43 @@ namespace Cyotek.Windows.Forms
 
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-    public bool ShowAlphaChannel { get; set; }
+    public bool ShowAlphaChannel
+    {
+      get { return _showAlphaChannel; }
+      set { _showAlphaChannel = value; }
+    }
+
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public bool ShowLoadPalette
+    {
+      get { return _showLoadPalette; }
+      set
+      {
+        if (_showLoadPalette != value)
+        {
+          _showLoadPalette = value;
+
+          loadPaletteButton.Visible = value;
+        }
+      }
+    }
+
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public bool ShowSavePalette
+    {
+      get { return _showLoadPalette; }
+      set
+      {
+        if (_showSavePalette != value)
+        {
+          _showSavePalette = value;
+
+          savePaletteButton.Visible = value;
+        }
+      }
+    }
 
     #endregion
 
@@ -101,21 +159,41 @@ namespace Cyotek.Windows.Forms
     {
       base.OnLoad(e);
 
-      colorEditor.ShowAlphaChannel = this.ShowAlphaChannel;
+      savePaletteButton.Visible = _showSavePalette;
+      loadPaletteButton.Visible = _showLoadPalette;
+      colorEditor.ShowAlphaChannel = _showAlphaChannel;
 
-      if (!this.ShowAlphaChannel)
+      if (!_showAlphaChannel)
       {
+        colorGrid.BeginUpdate();
+
         for (int i = 0; i < colorGrid.Colors.Count; i++)
         {
           Color color;
 
           color = colorGrid.Colors[i];
+
           if (color.A != 255)
           {
             colorGrid.Colors[i] = Color.FromArgb(255, color);
           }
         }
+
+        colorGrid.EndUpdate();
       }
+    }
+
+    /// <summary>
+    /// Raises the <see cref="LoadPalette" /> event.
+    /// </summary>
+    /// <param name="e">The <see cref="CancelEventArgs" /> instance containing the event data.</param>
+    protected virtual void OnLoadPalette(CancelEventArgs e)
+    {
+      CancelEventHandler handler;
+
+      handler = (CancelEventHandler)this.Events[_eventLoadPalette];
+
+      handler?.Invoke(this, e);
     }
 
     /// <summary>
@@ -127,6 +205,19 @@ namespace Cyotek.Windows.Forms
       EventHandler handler;
 
       handler = (EventHandler)this.Events[_eventPreviewColorChanged];
+
+      handler?.Invoke(this, e);
+    }
+
+    /// <summary>
+    /// Raises the <see cref="SavePalette" /> event.
+    /// </summary>
+    /// <param name="e">The <see cref="CancelEventArgs" /> instance containing the event data.</param>
+    protected virtual void OnSavePalette(CancelEventArgs e)
+    {
+      CancelEventHandler handler;
+
+      handler = (CancelEventHandler)this.Events[_eventSavePalette];
 
       handler?.Invoke(this, e);
     }
@@ -163,62 +254,14 @@ namespace Cyotek.Windows.Forms
 
     private void loadPaletteButton_Click(object sender, EventArgs e)
     {
-      using (FileDialog dialog = new OpenFileDialog
-                                 {
-                                   Filter = PaletteSerializer.DefaultOpenFilter,
-                                   DefaultExt = "pal",
-                                   Title = "Open Palette File"
-                                 })
-      {
-        if (dialog.ShowDialog(this) == DialogResult.OK)
-        {
-          try
-          {
-            IPaletteSerializer serializer;
+      CancelEventArgs args;
 
-            serializer = PaletteSerializer.GetSerializer(dialog.FileName);
-            if (serializer != null)
-            {
-              ColorCollection palette;
+      args = new CancelEventArgs();
 
-              if (!serializer.CanRead)
-              {
-                throw new InvalidOperationException("Serializer does not support reading palettes.");
-              }
+      this.OnLoadPalette(args);
 
-              using (FileStream file = File.OpenRead(dialog.FileName))
-              {
-                palette = serializer.Deserialize(file);
-              }
-
-              if (palette != null)
-              {
-                // we can only display 96 colors in the color grid due to it's size, so if there's more, bin them
-                while (palette.Count > 96)
-                {
-                  palette.RemoveAt(palette.Count - 1);
-                }
-
-                // or if we have less, fill in the blanks
-                while (palette.Count < 96)
-                {
-                  palette.Add(Color.White);
-                }
-
-                colorGrid.Colors = palette;
-              }
-            }
-            else
-            {
-              MessageBox.Show("Sorry, unable to open palette, the file format is not supported or is not recognized.", "Load Palette", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-          }
-          catch (Exception ex)
-          {
-            MessageBox.Show(string.Format("Sorry, unable to open palette. {0}", ex.GetBaseException().Message), "Load Palette", MessageBoxButtons.OK, MessageBoxIcon.Error);
-          }
-        }
-      }
+      if (!args.Cancel)
+      { }
     }
 
     private void okButton_Click(object sender, EventArgs e)
@@ -237,7 +280,9 @@ namespace Cyotek.Windows.Forms
       {
         if (_textureBrush == null)
         {
-          using (Bitmap background = new Bitmap(this.GetType().Assembly.GetManifestResourceStream(string.Concat(this.GetType().Namespace, ".Resources.cellbackground.png"))))
+          using (Bitmap background = new Bitmap(this.GetType().
+                                                     Assembly.GetManifestResourceStream(string.Concat(this.GetType().
+                                                                                                           Namespace, ".Resources.cellbackground.png"))))
           {
             _textureBrush = new TextureBrush(background, WrapMode.Tile);
           }
@@ -256,43 +301,14 @@ namespace Cyotek.Windows.Forms
 
     private void savePaletteButton_Click(object sender, EventArgs e)
     {
-      using (FileDialog dialog = new SaveFileDialog
-                                 {
-                                   Filter = PaletteSerializer.DefaultSaveFilter,
-                                   DefaultExt = "pal",
-                                   Title = "Save Palette File As"
-                                 })
-      {
-        if (dialog.ShowDialog(this) == DialogResult.OK)
-        {
-          IPaletteSerializer serializer;
+      CancelEventArgs args;
 
-          serializer = PaletteSerializer.AllSerializers.Where(s => s.CanWrite).ElementAt(dialog.FilterIndex - 1);
-          if (serializer != null)
-          {
-            if (!serializer.CanWrite)
-            {
-              throw new InvalidOperationException("Serializer does not support writing palettes.");
-            }
+      args = new CancelEventArgs();
 
-            try
-            {
-              using (FileStream file = File.OpenWrite(dialog.FileName))
-              {
-                serializer.Serialize(file, colorGrid.Colors);
-              }
-            }
-            catch (Exception ex)
-            {
-              MessageBox.Show(string.Format("Sorry, unable to save palette. {0}", ex.GetBaseException().Message), "Save Palette", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-          }
-          else
-          {
-            MessageBox.Show("Sorry, unable to save palette, the file format is not supported or is not recognized.", "Save Palette", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-          }
-        }
-      }
+      this.OnSavePalette(args);
+
+      if (!args.Cancel)
+      { }
     }
 
     #endregion

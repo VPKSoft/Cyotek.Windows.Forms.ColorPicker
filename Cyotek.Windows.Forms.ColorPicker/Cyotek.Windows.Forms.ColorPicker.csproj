@@ -48,9 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdobeColorTablePaletteSerializer.cs" />
-    <Compile Include="AdobePhotoshopColorSwatchColorSpace.cs" />
-    <Compile Include="AdobePhotoshopColorSwatchFileVersion.cs" />
     <Compile Include="ColorCellBorderStyle.cs" />
     <Compile Include="ColorGridSelectedCellStyle.cs" />
     <Compile Include="ColorPickerDialog.cs">
@@ -89,19 +86,11 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="EditColorCancelEventArgs.cs" />
-    <Compile Include="GimpPaletteSerializer.cs" />
-    <Compile Include="AdobePhotoshopColorSwatchSerializer.cs" />
     <Compile Include="NavigationOrigin.cs" />
-    <Compile Include="RawPaletteSerializer.cs" />
-    <Compile Include="InterleavedBitmapPaletteSerializer.cs" />
-    <Compile Include="JascPaletteSerializer.cs" />
-    <Compile Include="IPaletteSerializer.cs" />
     <Compile Include="LightnessColorSlider.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="NativeMethods.cs" />
-    <Compile Include="PaintNetPaletteSerializer.cs" />
-    <Compile Include="PaletteSerializer.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

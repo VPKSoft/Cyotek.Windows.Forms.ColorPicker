@@ -61,5 +61,20 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
     }
 
     #endregion
+
+    private void standardColorDialogButton_Click(object sender, EventArgs e)
+    {
+      using (ColorDialog dialog = new ColorDialog
+      {
+        Color = colorPreviewPanel.Color,
+        FullOpen = true
+      })
+      {
+        if (dialog.ShowDialog(this) == DialogResult.OK)
+        {
+          colorPreviewPanel.Color = dialog.Color;
+        }
+      }
+    }
   }
 }

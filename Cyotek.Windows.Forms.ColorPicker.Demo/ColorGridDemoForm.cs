@@ -27,10 +27,6 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
 
     #region Properties
 
-    private string PalettePath
-    {
-      get { return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "palettes"); }
-    }
 
     #endregion
 
@@ -41,16 +37,6 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
       base.OnLoad(e);
 
       colorGrid.Color = Color.LightSkyBlue;
-
-      palettesListBox.BeginUpdate();
-
-      foreach (string fileName in Directory.GetFiles(this.PalettePath))
-      {
-        // ReSharper disable once AssignNullToNotNullAttribute
-        palettesListBox.Items.Add(Path.GetFileName(fileName));
-      }
-
-      palettesListBox.EndUpdate();
     }
 
     private void addCustomColorsButton_Click(object sender, EventArgs e)
@@ -111,40 +97,12 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
       colorGrid.Colors = ColorPalettes.PaintPalette;
     }
 
-    private void palettesListBox_SelectedIndexChanged(object sender, EventArgs e)
-    {
-      if (palettesListBox.SelectedIndex != -1)
-      {
-        colorGrid.Colors = ColorCollection.LoadPalette(Path.Combine(this.PalettePath, palettesListBox.SelectedItem.ToString()));
-      }
-    }
 
     private void resetCustomColorsButton_Click(object sender, EventArgs e)
     {
       colorGrid.CustomColors = new ColorCollection(Enumerable.Repeat(Color.White, 32));
     }
 
-    private void savePaletteButton_Click(object sender, EventArgs e)
-    {
-      using (FileDialog dialog = new SaveFileDialog
-                                 {
-                                   Filter = PaletteSerializer.DefaultSaveFilter,
-                                   Title = "Save Palette As"
-                                 })
-      {
-        if (dialog.ShowDialog(this) == DialogResult.OK)
-        {
-          IPaletteSerializer serializer;
-
-          serializer = PaletteSerializer.AllSerializers.Where(s => s.CanWrite).ElementAt(dialog.FilterIndex - 1);
-
-          using (Stream stream = File.Create(dialog.FileName))
-          {
-            serializer.Serialize(stream, colorGrid.Colors);
-          }
-        }
-      }
-    }
 
     private void shadesOfBlueButton_Click(object sender, EventArgs e)
     {
