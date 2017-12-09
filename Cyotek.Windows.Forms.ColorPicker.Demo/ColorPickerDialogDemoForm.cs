@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using FwColorDialog = System.Windows.Forms.ColorDialog;
 
 namespace Cyotek.Windows.Forms.ColorPicker.Demo
 {
@@ -34,19 +35,12 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
 
     private void browseColorButton_Click(object sender, EventArgs e)
     {
-      using (ColorPickerDialog dialog = new ColorPickerDialog())
+      extendedColorDialog.Color = colorPreviewPanel.Color;
+      extendedColorDialog.ShowAlphaChannel = showAlphaChannelCheckBox.Checked;
+
+      if (extendedColorDialog.ShowDialog(this) == DialogResult.OK)
       {
-        dialog.Color = colorPreviewPanel.Color;
-        dialog.ShowAlphaChannel = showAlphaChannelCheckBox.Checked;
-
-        dialog.PreviewColorChanged += this.DialogColorChangedHandler;
-
-        if (dialog.ShowDialog(this) == DialogResult.OK)
-        {
-          colorPreviewPanel.Color = dialog.Color;
-        }
-
-        dialog.PreviewColorChanged -= this.DialogColorChangedHandler;
+        colorPreviewPanel.Color = extendedColorDialog.Color;
       }
     }
 
@@ -55,26 +49,21 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
       this.Close();
     }
 
-    private void DialogColorChangedHandler(object sender, EventArgs e)
-    {
-      dialogColorPreviewPanel.Color = ((ColorPickerDialog)sender).Color;
-    }
-
     #endregion
 
     private void standardColorDialogButton_Click(object sender, EventArgs e)
     {
-      using (ColorDialog dialog = new ColorDialog
+      standardColorDialog.Color = colorPreviewPanel.Color;
+
+      if (standardColorDialog.ShowDialog(this) == DialogResult.OK)
       {
-        Color = colorPreviewPanel.Color,
-        FullOpen = true
-      })
-      {
-        if (dialog.ShowDialog(this) == DialogResult.OK)
-        {
-          colorPreviewPanel.Color = dialog.Color;
-        }
+        colorPreviewPanel.Color = standardColorDialog.Color;
       }
+    }
+
+    private void extendedColorDialog_PreviewColor(object sender, EventArgs e)
+    {
+      dialogColorPreviewPanel.Color = extendedColorDialog.PreviewColor;
     }
   }
 }

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using FwColorDialog = System.Windows.Forms.ColorDialog;
 
 namespace Cyotek.Windows.Forms
 {
@@ -239,7 +240,7 @@ namespace Cyotek.Windows.Forms
     {
       e.Cancel = true;
 
-      using (ColorDialog dialog = new ColorDialog
+      using (FwColorDialog dialog = new FwColorDialog
                                   {
                                     FullOpen = true,
                                     Color = e.Color

@@ -49,6 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorCellBorderStyle.cs" />
+    <Compile Include="ColorDialog.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ColorGridSelectedCellStyle.cs" />
     <Compile Include="ColorPickerDialog.cs">
       <SubType>Form</SubType>

@@ -38,36 +38,38 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
       this.colorPreviewPanel = new Cyotek.Windows.Forms.ColorPicker.Demo.ColorPreviewBox();
       this.showAlphaChannelCheckBox = new System.Windows.Forms.CheckBox();
       this.standardColorDialogButton = new System.Windows.Forms.Button();
+      this.extendedColorDialog = new Cyotek.Windows.Forms.ColorDialog();
+      this.standardColorDialog = new System.Windows.Forms.ColorDialog();
       this.menuStrip.SuspendLayout();
       this.SuspendLayout();
-      // 
+      //
       // menuStrip
-      // 
+      //
       this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
       this.menuStrip.Location = new System.Drawing.Point(0, 0);
       this.menuStrip.Name = "menuStrip";
       this.menuStrip.Size = new System.Drawing.Size(554, 24);
       this.menuStrip.TabIndex = 0;
-      // 
+      //
       // fileToolStripMenuItem
-      // 
+      //
       this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.closeToolStripMenuItem});
       this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
       this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
       this.fileToolStripMenuItem.Text = "&File";
-      // 
+      //
       // closeToolStripMenuItem
-      // 
+      //
       this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
       this.closeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
       this.closeToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
       this.closeToolStripMenuItem.Text = "&Close";
       this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
-      // 
+      //
       // browseColorButton
-      // 
+      //
       this.browseColorButton.Location = new System.Drawing.Point(274, 260);
       this.browseColorButton.Name = "browseColorButton";
       this.browseColorButton.Size = new System.Drawing.Size(103, 23);
@@ -75,10 +77,10 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
       this.browseColorButton.Text = "&Choose Color...";
       this.browseColorButton.UseVisualStyleBackColor = true;
       this.browseColorButton.Click += new System.EventHandler(this.browseColorButton_Click);
-      // 
+      //
       // demoLabel
-      // 
-      this.demoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+      //
+      this.demoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
       this.demoLabel.AutoEllipsis = true;
       this.demoLabel.BackColor = System.Drawing.SystemColors.Info;
@@ -90,25 +92,25 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
       this.demoLabel.Size = new System.Drawing.Size(159, 256);
       this.demoLabel.TabIndex = 3;
       this.demoLabel.Text = resources.GetString("demoLabel.Text");
-      // 
+      //
       // dialogColorPreviewPanel
-      // 
+      //
       this.dialogColorPreviewPanel.Color = System.Drawing.Color.Empty;
       this.dialogColorPreviewPanel.Location = new System.Drawing.Point(274, 206);
       this.dialogColorPreviewPanel.Name = "dialogColorPreviewPanel";
       this.dialogColorPreviewPanel.Size = new System.Drawing.Size(103, 48);
       this.dialogColorPreviewPanel.TabIndex = 4;
-      // 
+      //
       // colorPreviewPanel
-      // 
+      //
       this.colorPreviewPanel.Color = System.Drawing.Color.Empty;
       this.colorPreviewPanel.Location = new System.Drawing.Point(12, 27);
       this.colorPreviewPanel.Name = "colorPreviewPanel";
       this.colorPreviewPanel.Size = new System.Drawing.Size(256, 256);
       this.colorPreviewPanel.TabIndex = 5;
-      // 
+      //
       // showAlphaChannelCheckBox
-      // 
+      //
       this.showAlphaChannelCheckBox.Checked = true;
       this.showAlphaChannelCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
       this.showAlphaChannelCheckBox.Location = new System.Drawing.Point(274, 27);
@@ -117,9 +119,9 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
       this.showAlphaChannelCheckBox.TabIndex = 6;
       this.showAlphaChannelCheckBox.Text = "Show &Alpha Channel";
       this.showAlphaChannelCheckBox.UseVisualStyleBackColor = true;
-      // 
+      //
       // standardColorDialogButton
-      // 
+      //
       this.standardColorDialogButton.Location = new System.Drawing.Point(264, 153);
       this.standardColorDialogButton.Name = "standardColorDialogButton";
       this.standardColorDialogButton.Size = new System.Drawing.Size(103, 23);
@@ -127,9 +129,13 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
       this.standardColorDialogButton.Text = "&Choose Color...";
       this.standardColorDialogButton.UseVisualStyleBackColor = true;
       this.standardColorDialogButton.Click += new System.EventHandler(this.standardColorDialogButton_Click);
-      // 
+      //
+      // extendedColorDialog
+      //
+      this.extendedColorDialog.PreviewColorChanged += new System.EventHandler(this.extendedColorDialog_PreviewColor);
+      //
       // ColorPickerDialogDemoForm
-      // 
+      //
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(554, 297);
@@ -162,5 +168,7 @@ namespace Cyotek.Windows.Forms.ColorPicker.Demo
     private ColorPreviewBox colorPreviewPanel;
     private System.Windows.Forms.CheckBox showAlphaChannelCheckBox;
     private System.Windows.Forms.Button standardColorDialogButton;
+    private ColorDialog extendedColorDialog;
+    private System.Windows.Forms.ColorDialog standardColorDialog;
   }
 }
